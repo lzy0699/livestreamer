@@ -16,7 +16,11 @@ if is_py2:
 
 elif is_py3:
     input = input
-    stdout = sys.stdout.buffer
+    if hasattr(sys.stdout,'buffer'):   #need checking for pythonista3 on ios 
+        stdout=sys.stdout.buffer
+    else:
+        stdout = sys.stdout
+    #stdout = sys.stdout.buffer
     from io import IOBase as file
     from shutil import get_terminal_size
 
